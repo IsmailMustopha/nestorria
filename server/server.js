@@ -4,7 +4,8 @@ import "dotenv/config";
 import connectDB from "./config/mongodb.js";
 import {clerkMiddleware} from '@clerk/express'
 import clerkWebhooks from "./controllers/clerkWebhooks.js";
-import authUser from "./middleware/auth.middleware.js";
+import userRouter from "./routes/user.routes.js";
+
 import agencyRouter from "./routes/agency.routes.js";
 import propertyRouter from "./routes/property.routes.js";
 import bookingRouter from "./routes/booking.routes.js";
@@ -19,7 +20,7 @@ app.use(clerkMiddleware())
 
 app.use("/api/clerk", clerkWebhooks)
 
-app.use("/api/user", authUser)
+app.use("/api/user", userRouter)
 app.use("/api/agencies", agencyRouter)
 app.use("/api/properties", propertyRouter)
 app.use("/api/bookings", bookingRouter)
